@@ -1,0 +1,282 @@
+@charset "UTF-8";
+/* Variables */
+/* Mixins */
+/* Import */
+/* Ya que me acomoda trabajar por etiqueta ordene mi scss por seccion del html */
+/* Aquí se creo codigo repetido para más adelante ajustar el tamaño de los contenedores segun el texto de la pagina en la vista responsiva */
+.mainNosotros, .main, .mainGaleria, .mainContacto, .mainProductos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #444244; }
+  .mainNosotros p, .main p, .mainGaleria p, .mainContacto p, .mainProductos p {
+    text-align: center;
+    font-size: 20px;
+    width: 70%; }
+
+.main {
+  height: 25rem;
+  padding: 10px; }
+
+.mainContacto {
+  height: 40rem; }
+
+.mainProductos {
+  height: 23rem;
+  padding: 20px; }
+
+.mainProducto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  color: #444244;
+  width: 50%;
+  padding-left: 30px; }
+  .mainProducto h1 {
+    font-size: 5rem; }
+
+.pProducto {
+  font-size: 25px; }
+
+.pPrecio {
+  font-size: 20px; }
+
+.h1Main {
+  color: #444244; }
+
+.botonProducto {
+  width: 10rem;
+  height: 3rem;
+  font-size: 20px; }
+
+@media screen and (max-width: 768px) {
+  .pProducto {
+    font-size: 20px; }
+  .pPrecio {
+    font-size: 15px; }
+  .mainNosotros, .main, .mainGaleria, .mainContacto, .mainProductos {
+    height: 60rem;
+    padding: 40px;
+    justify-content: space-around; }
+    .mainNosotros p, .main p, .mainGaleria p, .mainContacto p, .mainProductos p {
+      width: 100%; }
+  .main {
+    height: 50rem;
+    justify-content: space-around; }
+    .main p {
+      width: 100%; }
+  .mainProductos {
+    height: 44rem; }
+  .mainProducto {
+    height: 30rem; }
+    .mainProducto h1 {
+      font-size: 3rem; }
+  .mainGaleria {
+    height: 35rem;
+    padding: 40px;
+    justify-content: space-around; }
+    .mainGaleria p {
+      width: 100%; }
+  .mainContacto {
+    height: 38rem;
+    padding: 30px; }
+    .mainContacto p {
+      width: 100%; }
+  .mainProducto {
+    width: 100%;
+    padding-left: 30px; }
+    .mainProducto p {
+      width: 100%; }
+  .iframe {
+    margin-top: 0px;
+    width: 100%;
+    height: auto; } }
+
+.headerb {
+  background-color: #6b1630;
+  border-bottom: groove 4px #ffbaaf;
+  z-index: 999;
+  width: 100%;
+  height: 12%; }
+
+.botonSandwich {
+  background-color: #b8224f; }
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto; }
+
+.sizeLogob {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  height: 50px;
+  width: 50px; }
+
+.listab li {
+  padding-left: 12px;
+  padding-right: 12px;
+  z-index: 1000;
+  list-style: none; }
+
+@media screen and (max-width: 768px) {
+  .sizeLogo {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 90px;
+    width: 90px; }
+  .lista li {
+    font-size: 45px;
+    margin-top: 10px; } }
+
+.banner img {
+  width: 100%; }
+
+@media screen and (max-width: 425px) {
+  .banner {
+    overflow: hidden;
+    display: flex;
+    justify-self: center; }
+    .banner img {
+      height: 410px;
+      object-fit: none; } }
+
+@media screen and (max-width: 768px) {
+  .banner {
+    overflow: hidden;
+    display: flex;
+    justify-self: center; }
+    .banner img {
+      height: 410px;
+      object-fit: none; } }
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  background-color: #6b1630;
+  border-top: groove 4px #ffbaaf;
+  color: #ffbaaf; }
+  footer li {
+    background-color: #6b1630;
+    color: #ffbaaf;
+    list-style: none; }
+
+.map {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+  height: auto;
+  background-color: #6b1630;
+  border-top: groove 4px #ffbaaf;
+  color: #ffbaaf;
+  background-color: #b8224f; }
+  .map li {
+    background-color: #b8224f;
+    color: #ffbaaf;
+    list-style: none;
+    text-align: center; }
+
+.redes {
+  position: fixed;
+  bottom: 43%;
+  right: 0px; }
+  .redes img {
+    display: block;
+    width: 50px; }
+
+@media screen and (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    text-align: center; }
+  .scroll {
+    overflow: scroll; }
+  .redes {
+    display: none; } }
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.sectionProductos {
+  width: 100%; }
+
+.sectionContacto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: #444244;
+  height: 40rem;
+  padding: 20px; }
+
+.linkProducto {
+  color: white; }
+
+.cajaForm {
+  background-color: #ffbaaf;
+  padding: 20px;
+  border-radius: 20px; }
+
+@media screen and (max-width: 768px) {
+  .sectionContacto {
+    height: 25rem; } }
+
+/*Body Y Generales*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none; }
+
+.bodyb {
+  font-family: 'Roboto', sans-serif;
+  font-size: larger; }
+
+.btn {
+  background-color: #b8224f;
+  border-color: #b8224f; }
+  .btn:hover {
+    background-color: #ed2c66;
+    color: white; }
+
+.lndEstilo {
+  color: #b8224f; }
+
+h3 {
+  padding-bottom: 15px; }
+
+h2 {
+  text-align: center;
+  padding-bottom: 40px;
+  color: #b8224f; }
+
+h1 {
+  text-align: center;
+  color: #b8224f; }
+
+.link {
+  text-decoration: none;
+  color: whitesmoke; }
+
+.animacion:hover {
+  color: #b8224f; }
+
+.animacionb:hover {
+  color: #6b1630; }
+
+@media screen and (max-width: 768px) {
+  h1 {
+    text-align: center;
+    font-size: 32px; }
+  p {
+    width: 100%; } }

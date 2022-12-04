@@ -1,0 +1,34 @@
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sectionProductos {
+    width: 100%;
+}
+
+.sectionContacto {   
+    @include flex-column;
+    justify-content: space-evenly;
+    color: $colorFuente;
+    height: 40rem;
+    padding: 20px;
+}
+
+.linkProducto {
+    color: white;
+}
+
+.cajaForm {
+    background-color: $colorSecundario;
+    padding: 20px ;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .sectionContacto {   
+        height: 25rem;
+    }
+}
+

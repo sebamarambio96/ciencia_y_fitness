@@ -1,0 +1,93 @@
+/* Variables */
+
+$colorPrincipal: #6b1630;
+$colorSecundario: #ffbaaf;
+$colorTerciario: #b8224f;
+$colorFuente: #444244;
+
+/* Mixins */
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Import */ /* Ya que me acomoda trabajar por etiqueta ordene mi scss por seccion del html */
+
+@import "./mains";
+@import "./header";
+@import "./banner";
+@import "./footer";
+@import "./section";
+
+
+/*Body Y Generales*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.bodyb {
+    font-family: 'Roboto', sans-serif;
+    font-size: larger;
+}
+
+.btn {
+    background-color: $colorTerciario;
+    border-color: $colorTerciario;
+        &:hover {
+            background-color: #ed2c66;
+            color: white;
+        }
+    }
+
+.lndEstilo{
+    color:$colorTerciario
+}
+
+h3 {
+    padding-bottom: 15px;
+}
+
+h2 {
+    text-align: center;
+    padding-bottom: 40px;
+    color: $colorTerciario;
+}
+
+h1 {
+    text-align: center;
+    color: $colorTerciario;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(245, 245, 245);
+        
+}
+
+.animacion {
+    &:hover {
+        color: $colorTerciario;
+    }
+}
+
+.animacionb {
+    &:hover {
+        color: $colorPrincipal;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    p {
+        width: 100%;
+    }
+}
