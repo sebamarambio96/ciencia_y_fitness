@@ -33,7 +33,7 @@ class Solicitante {
 
     mostrarInfo(){
         const hoy = new Date()
-        return `Datos solicitante N°${this.id} :\n- Sexo: ${this.sexo}\n- Peso: ${this.peso}\n- Altura: ${this.edad}\n- Edad: ${this.edad}\n - Ejercicio: ${this.ejercicio}\n- Última evaluación: ${hoy.toDateString()}`
+        return `Datos solicitante N°${this.id} :\n- Sexo: ${this.sexo}\n- Peso: ${this.peso}\n- Altura: ${this.edad}\n- Edad: ${this.edad}\n - Ejercicio: Nivel ${this.ejercicio}\n- Última evaluación: ${hoy.toDateString()}`
     }
 
 }
@@ -104,7 +104,7 @@ for (let x = 1; x <= participantes; x += 1) {
     }
     console.log(tmbFinal)
 
-    window.alert(`La TMB del solicitante ${x} es: ${Math.round(tmb)} \nPara su nivel de ejercicio su gasto diario es: ${Math.round(tmbFinal)} `)
+    window.alert(`La TMB del solicitante ${x} es: ${Math.round(tmb)} \nPara su nivel de ejercicio su gasto diario es de: ${Math.round(tmbFinal)} calorías`)
     console.log(x)
 
     solicitantes[x] = new Solicitante(peso, altura, edad, ejercicio, x, sexo)
@@ -124,12 +124,15 @@ while (condicion === true) {
         let soli = `- ${solicitantes[x].id}\n`
         listaSoli += soli
     }
+    console.log(solicitantes);
     if(solicitud === 1){
-        let s = prompt(`Ingrese el número del solicitante para obtener más detalles:\n${listaSoli}`)        
-        window.alert(solicitantes[s].mostrarInfo())
+        let ident = prompt(`Ingrese el número del solicitante para obtener más detalles:\n${listaSoli}`)      
+        let solicitante = solicitantes.find(solicitante => solicitante.id == ident)
+        console.log(solicitante);
+        window.alert(solicitante.mostrarInfo())
     } else if (solicitud === 2) {
-        let n = prompt(`Ingrese el número del solicitante que desea eliminar:\n${listaSoli}`)
-        solicitantes = solicitantes.filter(solicitante => solicitante.id != n)
+        let ident = prompt(`Ingrese el número del solicitante que desea eliminar:\n${listaSoli}`)
+        solicitantes = solicitantes.filter(solicitante => solicitante.id != ident)
     } else if (solicitud === 3) {
         condicion = false
     } else{
