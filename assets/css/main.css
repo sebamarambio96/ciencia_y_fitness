@@ -1,6 +1,14 @@
 /* Variables */
-/* Mixins */
 /* Import */
+section {
+  border-left: 2px solid rgba(87, 87, 87, 0.183); }
+
+.siluetas {
+  background-image: url(../img/siluetas.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 50% 50%; }
+
 /*Body Y Generales*/
 * {
   margin: 0;
@@ -8,11 +16,12 @@
   box-sizing: border-box;
   text-decoration: none; }
 
-.btn {
+.btnCF {
+  padding: 6px 12px 6px 12px;
   background-color: #b85922;
   border-color: #b85922;
   color: white; }
-  .btn:hover {
+  .btnCF:hover {
     background-color: #db6a29;
     color: white; }
 
@@ -25,13 +34,17 @@
 .lndEstilo {
   color: #b85922; }
 
+i {
+  color: #b85922;
+  font-size: 20px; }
+
 h1 {
   text-align: center;
   color: #b85922; }
 
-.link {
-  text-decoration: none;
-  color: whitesmoke; }
+span {
+  text-align: center;
+  color: #b85922; }
 
 .main {
   display: flex;

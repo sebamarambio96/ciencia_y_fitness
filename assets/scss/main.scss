@@ -22,7 +22,8 @@ $colorFuente: #444244;
     text-decoration: none;
 }
 
-.btn {
+.btnCF {
+    padding: 6px 12px 6px 12px;
     background-color: $colorTerciario;
     border-color: $colorTerciario;
     color: white;
@@ -45,7 +46,17 @@ $colorFuente: #444244;
     color: $colorTerciario
 }
 
+i{
+    color: $colorTerciario;
+    font-size: 20px;
+}
+
 h1 {
+    text-align: center;
+    color: $colorTerciario;
+}
+
+span {
     text-align: center;
     color: $colorTerciario;
 }

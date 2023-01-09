@@ -33,14 +33,14 @@ class Solicitante {
 
     mostrarInfo(){
         const hoy = new Date()
-        return `Datos solicitante N°${this.id} :\n- Sexo: ${this.sexo}\n- Peso: ${this.peso}\n- Altura: ${this.edad}\n- Edad: ${this.edad}\n - Ejercicio: Nivel ${this.ejercicio}\n- Última evaluación: ${hoy.toDateString()}`
+        return `Datos solicitante N°${this.id} :\n- Sexo: ${this.sexo}\n- Peso: ${this.peso}\n- Altura: ${this.altura}\n- Edad: ${this.edad}\n - Ejercicio: Nivel ${this.ejercicio}\n- Última evaluación: ${hoy.toDateString()}`
     }
 
 }
 
 
 
-function datos() {
+function datosSolicitante() {
     peso = prompt('Ingrese su peso en kilogramos:')
     altura = prompt('Ingrese su altura en centimetros:')
     edad = prompt('Ingrese su edad:')
@@ -54,7 +54,7 @@ let participantes =prompt('Bienvenido a Ciencia y Fitness!\nTe ayudaremos a calc
 console.log(participantes)
 
 for (let x = 1; x <= participantes; x += 1) {
-    datos();
+    datosSolicitante();
     let i = 0;
     while (i === 0) {
         let sexo0 = prompt('Indícanos tu sexo: Hombre / Mujer.');
@@ -128,7 +128,7 @@ while (condicion === true) {
     if(solicitud === 1){
         let ident = prompt(`Ingrese el número del solicitante para obtener más detalles:\n${listaSoli}`)      
         let solicitante = solicitantes.find(solicitante => solicitante.id == ident)
-        console.log(solicitante);
+        console.log(solicitante);1
         window.alert(solicitante.mostrarInfo())
     } else if (solicitud === 2) {
         let ident = prompt(`Ingrese el número del solicitante que desea eliminar:\n${listaSoli}`)
