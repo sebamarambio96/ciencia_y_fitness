@@ -1,8 +1,10 @@
-let solicitantes = []
-
+let solicitantes = JSON.parse(localStorage.getItem('results'))
+if (solicitantes==null) {
+    solicitantes = []
+}
 
 class Solicitante {
-    constructor(peso, altura, edad, ejercicio, id, sexo, tmb, get) {
+    constructor(peso, altura, edad, ejercicio, id, sexo, tmb, get, fecha) {
         this.peso = peso
         this.altura = altura
         this.edad = edad
@@ -11,7 +13,7 @@ class Solicitante {
         this.sexo = sexo
         this.tmb = tmb
         this.get = get
-        this.fecha = new Date()
+        this.fecha = fecha
     }
 
     mostrarInfo() {
@@ -41,7 +43,10 @@ function detectarBotonesVer() {
             arrayResults = JSON.parse(localStorage.getItem('results'))
             //filtramos los NULLS y creamos un nuevo array, esto debido a que la app funciona considerando que
             let consultas = arrayResults.filter(consulta => consulta != null)
+            /* console.log(consultas) */
             //Ahora buscamos la posicion del elemento con el id seleccionado
+            consulta = consultas.find(item => item.id == btn.dataset.id)
+            console.log(consulta)
             let x = arrayResults.indexOf(consulta)
             //Se pinta el nuevo conjunto de datos
             pintarResultado(x)
@@ -57,7 +62,7 @@ function detectarBotonesBorrar() {
         btn.addEventListener('click', () => {
             //Para eliminar filtramos un array con todos los elementos menos el que seleccionamos
             solicitantes = solicitantes.filter(consulta => consulta.id != btn.dataset.id)
-
+            console.log(solicitantes)
             localStorage.setItem('results', JSON.stringify(solicitantes))
             //Se pinta el nuevo conjunto de datos
             pintarResultado(solicitantes.length - 1)
@@ -116,7 +121,9 @@ function datosSolicitante() {
             contadorID = 0
         }
         //Se crea una nueva instancia de la clase solicitante
-        solicitantes[contadorID] = new Solicitante(peso, altura, edad, ejercicio, contadorID, sexo, Math.round(tmb), Math.round(get))
+        const fecha = new Date();
+        const fechaFormato = `${fecha.getDay()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+        solicitantes[contadorID] = new Solicitante(peso, altura, edad, ejercicio, contadorID, sexo, Math.round(tmb), Math.round(get),fechaFormato)
         localStorage.setItem('results', JSON.stringify(solicitantes))
         pintarResultado(contadorID)
         contadorID++
@@ -198,4 +205,14 @@ function pintarResultado(contadorID) {
     //Se vuelve a ejecutar funciones para detectar botones
     detectarBotonesVer()
     detectarBotonesBorrar()
+    vaciarCarro()
+}
+
+//Boton para eliminar local storage
+function vaciarCarro() {
+    const botonVaciar = document.getElementById('botonVaciar')
+    botonVaciar.addEventListener('click', () => {
+        localStorage.clear()
+        location.reload()
+    })
 }
