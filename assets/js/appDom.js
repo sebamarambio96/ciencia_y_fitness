@@ -41,10 +41,7 @@ function detectarBotonesVer() {
             arrayResults = JSON.parse(localStorage.getItem('results'))
             //filtramos los NULLS y creamos un nuevo array, esto debido a que la app funciona considerando que
             let consultas = arrayResults.filter(consulta => consulta != null)
-            /* console.log(consultas) */
             //Ahora buscamos la posicion del elemento con el id seleccionado
-            consulta = consultas.find(item => item.id == btn.dataset.id)
-            console.log(consulta)
             let x = arrayResults.indexOf(consulta)
             //Se pinta el nuevo conjunto de datos
             pintarResultado(x)
@@ -60,7 +57,7 @@ function detectarBotonesBorrar() {
         btn.addEventListener('click', () => {
             //Para eliminar filtramos un array con todos los elementos menos el que seleccionamos
             solicitantes = solicitantes.filter(consulta => consulta.id != btn.dataset.id)
-            console.log(solicitantes)
+
             localStorage.setItem('results', JSON.stringify(solicitantes))
             //Se pinta el nuevo conjunto de datos
             pintarResultado(solicitantes.length - 1)
@@ -125,6 +122,7 @@ function datosSolicitante() {
         contadorID++
         localStorage.setItem('contador', JSON.stringify(contadorID))
     })
+    //Se vuelve a ejecutar funciones para detectar botones
     detectarBotonesVer()
     detectarBotonesBorrar()
 }
@@ -145,7 +143,7 @@ function pintarResultado(contadorID) {
     } else {
         //Si el array contiene datos se pintara el id solicitado en la función pintara el nuevo conjunto de datos
         let consulta = arrayResults[contadorID]
-    
+
 
         const templateResults = document.getElementById('templateResults').content
         const contenedorResults = document.getElementById('contenedorResults')
@@ -197,6 +195,7 @@ function pintarResultado(contadorID) {
         })
         contenedorLista.appendChild(fragmentLista)
     }
+    //Se vuelve a ejecutar funciones para detectar botones
     detectarBotonesVer()
     detectarBotonesBorrar()
 }
