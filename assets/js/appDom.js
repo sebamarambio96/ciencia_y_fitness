@@ -166,6 +166,7 @@ function pintarResultado(contadorID) {
         let sexo = templateResults.getElementById('sexo')
         let datosTMB = templateResults.getElementById('datosTMB')
         let datosGET = templateResults.getElementById('datosGET')
+        let ejercicioNivel = templateResults.getElementById('ejercicioNivel')
 
         peso.textContent = consulta.peso
         altura.textContent = consulta.altura
@@ -173,6 +174,7 @@ function pintarResultado(contadorID) {
         sexo.textContent = consulta.sexo
         datosTMB.textContent = consulta.tmb
         datosGET.textContent = consulta.get
+        ejercicioNivel.textContent = consulta.ejercicio
         const clone = templateResults.cloneNode(true)
         fragmentResults.appendChild(clone)
         contenedorResults.appendChild(fragmentResults)
