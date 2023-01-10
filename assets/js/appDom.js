@@ -203,11 +203,11 @@ function pintarResultado(contadorID) {
             }
         })
         contenedorLista.appendChild(fragmentLista)
+        vaciarCarro()
     }
     //Se vuelve a ejecutar funciones para detectar botones
     detectarBotonesVer()
     detectarBotonesBorrar()
-    vaciarCarro()
 }
 
 //Boton para eliminar local storage
