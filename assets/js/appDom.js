@@ -1,8 +1,14 @@
 let solicitantes = JSON.parse(localStorage.getItem('results'))
-if (solicitantes==null) {
-    solicitantes = []
+solicitantes = solicitantes ?? []
+
+//Si hay datos en localStorage, pinta el ultimo en el array
+//De lo contrario no pintara nada y esperara el evento enviar
+
+if (solicitantes != null || solicitantes == []) {
+    pintarResultado(solicitantes.length - 1)
 }
 
+//Clase que se usará para registrar datos de los usuarios
 class Solicitante {
     constructor(peso, altura, edad, ejercicio, id, sexo, tmb, get, fecha) {
         this.peso = peso
@@ -23,14 +29,6 @@ class Solicitante {
 
 }
 
-//Si hay datos en localStorage, pinta el ultimo en el array
-//De lo contrario no pintara nada y esperara el evento enviar
-
-let arrayResults = JSON.parse(localStorage.getItem('results'))
-if (arrayResults != null || arrayResults == []) {
-    pintarResultado(arrayResults.length - 1)
-}
-
 //Al activar datos solicitantes, extrae los datos, los pinta y ejecuta las funciones para detectar botones
 //Y cada boton vuelve a activar la funcion de pintar y la de pintar la de detectar botones, creando asi un ciclo de pintar y escuchar
 datosSolicitante()
@@ -40,14 +38,12 @@ function detectarBotonesVer() {
     let botones = document.querySelectorAll('#btnVer')
     botones.forEach(btn => {
         btn.addEventListener('click', () => {
-            arrayResults = JSON.parse(localStorage.getItem('results'))
-            //filtramos los NULLS y creamos un nuevo array, esto debido a que la app funciona considerando que
-            let consultas = arrayResults.filter(consulta => consulta != null)
-            /* console.log(consultas) */
+            solicitantes = JSON.parse(localStorage.getItem('results'))
+            //filtramos los NULLS y creamos un nuevo array.
+            let consultas = solicitantes.filter(consulta => consulta != null)
             //Ahora buscamos la posicion del elemento con el id seleccionado
             consulta = consultas.find(item => item.id == btn.dataset.id)
-            console.log(consulta)
-            let x = arrayResults.indexOf(consulta)
+            let x = solicitantes.indexOf(consulta)
             //Se pinta el nuevo conjunto de datos
             pintarResultado(x)
         })
@@ -60,9 +56,9 @@ function detectarBotonesBorrar() {
     let botones = document.querySelectorAll('#btnBorrar')
     botones.forEach(btn => {
         btn.addEventListener('click', () => {
+            console.log(btn.dataset.id);
             //Para eliminar filtramos un array con todos los elementos menos el que seleccionamos
-            solicitantes = solicitantes.filter(consulta => consulta.id != btn.dataset.id)
-            console.log(solicitantes)
+            solicitantes = solicitantes.filter(consulta => consulta.id != parseInt(btn.dataset.id))
             localStorage.setItem('results', JSON.stringify(solicitantes))
             //Se pinta el nuevo conjunto de datos
             pintarResultado(solicitantes.length - 1)
@@ -81,6 +77,7 @@ function datosSolicitante() {
     const btnSend = document.getElementById('btnSend')
     btnSend.addEventListener('click', (e) => {
         e.preventDefault()
+
         //Extrae los valores ingresados por el cliente en los inputs
         let sexo = document.querySelector('input[name="sexos"]:checked').value
         let ejercicio = document.querySelector('input[name="ejercicio"]:checked').value
@@ -89,56 +86,37 @@ function datosSolicitante() {
         let edad = document.getElementById('edad').value;
         let tmb;
         let get;
-        if (sexo == 'Hombre') {
-            tmb = tmbHombre(peso, altura, edad);
-        }
-        else if (sexo == 'Mujer') {
-            tmb = tmbMujer(peso, altura, edad);
-        }
+
+        //Solo hay 2 opciones de sexo asique si es distinto de mujer dara TRUE por lo tanto es hombre, si es FALSE será mujer
+        tmb = sexo != 'Mujer' ? tmbHombre(peso, altura, edad) : tmb = tmbMujer(peso, altura, edad)
 
         //Se calcula el Gasto calorico diario
-        if (ejercicio == 1) {
-            get = tmb * 1.2;
-        }
-        else if (ejercicio == 2) {
-            get = tmb * 1.375;
-        }
-        else if (ejercicio == 3) {
-            get = tmb * 1.55;
-        }
-        else if (ejercicio == 4) {
-            get = tmb * 1.725;
-        }
-        else if (ejercicio == 5) {
-            get = tmb * 1.9;
-        }
-        else {
-            window.alert('Ingrese una opción válida')
-        }
+        ejercicio == 1 && (get = tmb * 1.2)
+        ejercicio == 2 && (get = tmb * 1.375)
+        ejercicio == 3 && (get = tmb * 1.55)
+        ejercicio == 4 && (get = tmb * 1.725)
+        ejercicio == 5 && (get = tmb * 1.9)
+
         let contadorID = 0
         contadorID = JSON.parse(localStorage.getItem('contador'))
-        if (contadorID === null) {
-            contadorID = 0
-        }
+        contadorID ?? (contadorID = 0)
+
         //Se crea una nueva instancia de la clase solicitante
         const fecha = new Date();
         const fechaFormato = `${fecha.getDay()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
-        solicitantes[contadorID] = new Solicitante(peso, altura, edad, ejercicio, contadorID, sexo, Math.round(tmb), Math.round(get),fechaFormato)
+        solicitantes[contadorID] = new Solicitante(peso, altura, edad, ejercicio, contadorID, sexo, Math.round(tmb), Math.round(get), fechaFormato)
         localStorage.setItem('results', JSON.stringify(solicitantes))
         pintarResultado(contadorID)
         contadorID++
         localStorage.setItem('contador', JSON.stringify(contadorID))
     })
-    //Se vuelve a ejecutar funciones para detectar botones
-    detectarBotonesVer()
-    detectarBotonesBorrar()
 }
 
 function pintarResultado(contadorID) {
-    arrayResults = JSON.parse(localStorage.getItem('results'))
+    solicitantes = JSON.parse(localStorage.getItem('results')) || []
 
     // En caso de que el array se quede vacio por eliminar elementos se pintara denuevo las siluetas de relleno
-    if (arrayResults.length === 0) {
+    if (solicitantes.length === 0) {
         const contenedorResults = document.getElementById('contenedorResults');
         let fragment = ''
         fragment += `
@@ -149,7 +127,7 @@ function pintarResultado(contadorID) {
         contenedorResults.innerHTML = fragment
     } else {
         //Si el array contiene datos se pintara el id solicitado en la función pintara el nuevo conjunto de datos
-        let consulta = arrayResults[contadorID]
+        let consulta = solicitantes[contadorID]
 
 
         const templateResults = document.getElementById('templateResults').content
@@ -184,7 +162,7 @@ function pintarResultado(contadorID) {
         const contenedorLista = document.getElementById('contenedorLista')
         const fragmentLista = document.createDocumentFragment()
 
-        arrayResults.map(consulta => {
+        solicitantes.map(consulta => {
             //Al borrar datos quedaran espacios null en el array por lo tanto se incluye esta medida para evitar bugs
             if (consulta != null) {
                 const idConsulta = templateLista.getElementById('idConsulta')
@@ -203,18 +181,20 @@ function pintarResultado(contadorID) {
             }
         })
         contenedorLista.appendChild(fragmentLista)
-        vaciarCarro()
+
     }
     //Se vuelve a ejecutar funciones para detectar botones
     detectarBotonesVer()
     detectarBotonesBorrar()
+    vaciarConsultas()
 }
 
 //Boton para eliminar local storage
-function vaciarCarro() {
-    const botonVaciar = document.getElementById('botonVaciar')
+function vaciarConsultas() {
+    const botonVaciar = document.getElementById('botonVaciar') 
+    botonVaciar && (
     botonVaciar.addEventListener('click', () => {
         localStorage.clear()
         location.reload()
-    })
+    }))
 }
