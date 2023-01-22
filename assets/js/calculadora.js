@@ -32,40 +32,6 @@ class Solicitante {
 //Al activar datos solicitantes, extrae los datos, los pinta y ejecuta las funciones para detectar botones
 //Y cada boton vuelve a activar la funcion de pintar y la de pintar la de detectar botones, creando asi un ciclo de pintar y escuchar
 datosSolicitante()
-//Funcion que detecta el boton presionado y el data-id que se les asigno
-//Elige una consulta y la muestra en pantalla
-function detectarBotonesVer() {
-    let botones = document.querySelectorAll('#btnVer')
-    botones.forEach(btn => {
-        btn.addEventListener('click', () => {
-            solicitantes = JSON.parse(localStorage.getItem('results'))
-            //filtramos los NULLS y creamos un nuevo array.
-            let consultas = solicitantes.filter(consulta => consulta != null)
-            //Ahora buscamos la posicion del elemento con el id seleccionado
-            consulta = consultas.find(item => item.id == btn.dataset.id)
-            let x = solicitantes.indexOf(consulta)
-            //Se pinta el nuevo conjunto de datos
-            pintarResultado(x)
-        })
-    })
-}
-
-
-//Elige una consulta y la borra de la base de datos
-function detectarBotonesBorrar() {
-    let botones = document.querySelectorAll('#btnBorrar')
-    botones.forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log(btn.dataset.id);
-            //Para eliminar filtramos un array con todos los elementos menos el que seleccionamos
-            solicitantes = solicitantes.filter(consulta => consulta.id != parseInt(btn.dataset.id))
-            localStorage.setItem('results', JSON.stringify(solicitantes))
-            //Se pinta el nuevo conjunto de datos
-            pintarResultado(solicitantes.length - 1)
-        })
-    })
-}
-
 
 //Funciones para calcular tasa metabolica basal
 const tmbHombre = (a, b, c) => { return (10 * a) + (6.25 * b) - (5 * c) + 5 };
@@ -188,6 +154,46 @@ function pintarResultado(contadorID) {
     detectarBotonesBorrar()
     vaciarConsultas()
 }
+
+//Funciones para botones
+//Funcion que detecta el boton presionado y el data-id que se les asigno
+//Elige una consulta y la muestra en pantalla
+function detectarBotonesVer() {
+    let botones = document.querySelectorAll('#btnVer')
+    botones.forEach(btn => {
+        btn.addEventListener('click', () => {
+            solicitantes = JSON.parse(localStorage.getItem('results'))
+            //filtramos los NULLS y creamos un nuevo array.
+            let consultas = solicitantes.filter(consulta => consulta != null)
+            //Ahora buscamos la posicion del elemento con el id seleccionado
+            consulta = consultas.find(item => item.id == btn.dataset.id)
+            let x = solicitantes.indexOf(consulta)
+            //Se pinta el nuevo conjunto de datos
+            pintarResultado(x)
+        })
+    })
+}
+
+
+//Elige una consulta y la borra de la base de datos
+function detectarBotonesBorrar() {
+    let botones = document.querySelectorAll('#btnBorrar')
+    botones.forEach(btn => {
+        btn.addEventListener('click', () => {
+            solicitantes = JSON.parse(localStorage.getItem('results'))
+            //filtramos los NULLS y creamos un nuevo array.
+            let consultas = solicitantes.filter(consulta => consulta != null)
+            //Ahora buscamos la posicion del elemento con el id seleccionado
+            //Para eliminar filtramos un array con todos los elementos menos el que seleccionamos
+            solicitantes = consultas.filter(consulta => consulta.id != btn.dataset.id)
+            //Guardamos en el localStorage el nuevo array de consultas
+            localStorage.setItem('results', JSON.stringify(solicitantes))
+            //Se pinta el nuevo conjunto de datos
+            pintarResultado(solicitantes.length - 1)
+        })
+    })
+}
+
 
 //Boton para eliminar local storage
 function vaciarConsultas() {
