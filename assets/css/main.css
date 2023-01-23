@@ -49,6 +49,13 @@ section {
   box-sizing: border-box;
   text-decoration: none; }
 
+.link {
+  text-decoration: none;
+  color: #ffffff; }
+  .link:hover {
+    text-decoration: none;
+    color: #ffffff; }
+
 .btnCF {
   padding: 6px 12px 6px 12px;
   background-color: #b85922;
@@ -90,3 +97,7 @@ span {
   justify-content: center;
   flex-direction: column;
   align-items: center; }
+
+.contenedorLista {
+  overflow-y: auto;
+  height: 30vh; }

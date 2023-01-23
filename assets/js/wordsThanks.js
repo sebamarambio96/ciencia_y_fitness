@@ -24,7 +24,7 @@ async function getData() {
         while (contianerWT.firstChild) {
             contianerWT.removeChild(contianerWT.firstChild);
         }
-    
+
         let i = 0
         randomUser.map(user => {
             let imgWT = templateCardWT.getElementById('imgWT')
@@ -54,3 +54,30 @@ async function getData() {
 }
 
 getData()
+
+//Solo para practicar todas las herramientas utilice una PROMESA para que pasado un tiempo salga un anuncio que te invite a seguir mi GitHub o
+//Dejarme un comentario en un form hecho para la ocasión
+
+const anuncio = new Promise((resolve) => {
+    setTimeout(() => resolve('Hola'), 30000);
+});
+
+anuncio.then(value => {
+    Swal.fire({
+        title: '¿Te está gustando nuestra Web?',
+        icon: 'question',
+        html:
+            'Me encantaría que dejaras un comentario y si te interesa puedes contactarme en mi cuenta de ' +
+            '<a href="https://github.com/sebamarambio96">GitHub</a>',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonColor: '#00b09b',
+        confirmButtonText:
+            '<a class="link" href="https://docs.google.com/forms/d/1EfuOLjalZ8DJEbDwqcixyhDMtRE6yMBVxIY60Ye6QfQ/viewform?edit_requested=true" target="_blank">Por supuesto, ¡Me encantaría!</a>',
+        confirmButtonAriaLabel: 'Thumbs up, great!',
+        cancelButtonText:
+            'Quizás más tarde',
+        cancelButtonAriaLabel: 'Thumbs down'
+    })
+});

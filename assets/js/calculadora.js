@@ -43,7 +43,6 @@ function datosSolicitante() {
     const btnSend = document.getElementById('btnSend')
     btnSend.addEventListener('click', (e) => {
         e.preventDefault()
-
         //Extrae los valores ingresados por el cliente en los inputs
         let sexo = document.querySelector('input[name="sexos"]:checked').value
         let ejercicio = document.querySelector('input[name="ejercicio"]:checked').value
@@ -75,6 +74,17 @@ function datosSolicitante() {
         pintarResultado(contadorID)
         contadorID++
         localStorage.setItem('contador', JSON.stringify(contadorID))
+        //Finalmente, avisa que se ha ejecutado una consulta
+        Toastify({
+            text: "Consulta realizada",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: { background: "#00b09b" }
+        }).showToast();
     })
 }
 
@@ -149,6 +159,8 @@ function pintarResultado(contadorID) {
         contenedorLista.appendChild(fragmentLista)
 
     }
+
+
     //Se vuelve a ejecutar funciones para detectar botones
     detectarBotonesVer()
     detectarBotonesBorrar()
@@ -170,6 +182,17 @@ function detectarBotonesVer() {
             let x = solicitantes.indexOf(consulta)
             //Se pinta el nuevo conjunto de datos
             pintarResultado(x)
+            //Finalmente, muestra la consulta solicitada
+            Toastify({
+                text: `Consulta #${btn.dataset.id}`,
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: { background: "#b85922" }
+            }).showToast();
         })
     })
 }
@@ -190,6 +213,17 @@ function detectarBotonesBorrar() {
             localStorage.setItem('results', JSON.stringify(solicitantes))
             //Se pinta el nuevo conjunto de datos
             pintarResultado(solicitantes.length - 1)
+            //Finalmente, muestra la consulta eliminada
+            Toastify({
+                text: `Consulta #${btn.dataset.id} eliminada`,
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: { background: "#e43929" }
+            }).showToast();
         })
     })
 }
@@ -197,10 +231,28 @@ function detectarBotonesBorrar() {
 
 //Boton para eliminar local storage
 function vaciarConsultas() {
-    const botonVaciar = document.getElementById('botonVaciar') 
+    const botonVaciar = document.getElementById('botonVaciar')
     botonVaciar && (
-    botonVaciar.addEventListener('click', () => {
-        localStorage.clear()
-        location.reload()
-    }))
+        botonVaciar.addEventListener('click', () => {
+            Swal.fire({
+                title: '¿Estás seguro de que deseas eliminar tus consultas?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#00b09b',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminalas!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Listo!',
+                        'Tus consultas han sido elimínadas',
+                        'Éxito'
+                    )
+                    localStorage.clear()
+                    location.reload()
+                }
+            })
+
+        }))
 }
