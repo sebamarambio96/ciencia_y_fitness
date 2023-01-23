@@ -29,6 +29,7 @@
 .cardWT {
     --bs-card-spacer-y: 0.5rem;
     --bs-card-spacer-x: 0.3rem;
+    width: 30rem;
 }
 
 .imgCardWT {
@@ -39,4 +40,30 @@
 
 .offCanvaBody{
     display:inline-flex;
+}
+
+@media screen and (max-width: 500px) {
+    .offCanvaBody{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cardWT {
+        width: 25rem;
+        margin-bottom: 1rem;
+    }
+    .offcanvas {
+        --bs-offcanvas-height: 100vh;
+        --bs-offcanvas-padding-y: 1rem;
+        --bs-offcanvas-padding-x: 0rem;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cardWT {
+        width: 20rem;
+        margin-bottom: 1rem;
+    }
 }

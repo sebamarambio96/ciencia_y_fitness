@@ -91,3 +91,19 @@ span {
     overflow-y: auto;
     height: 30vh;
 }
+
+@media screen and (max-width: 1025px) {
+    .radios {
+        padding-bottom: 10px;
+    }
+
+    .sexo {
+        margin-right: 20vh;
+    }
+
+    .contenedorLista {
+        overflow-y: auto;
+        height: 40vh;
+    }
+
+}
