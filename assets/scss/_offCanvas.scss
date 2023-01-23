@@ -1,10 +1,42 @@
-section{
-    border-left: 2px solid rgba(87, 87, 87, 0.183);
+.wT {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+
+    button {
+        width: 3rem;
+        border-radius: 0 0 30px 0;
+    }
+
+    i {
+        color: white;
+    }
 }
 
-.siluetas{
-    background-image: url(../img/siluetas.svg);
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: 50% 50%
+.offcanvas {
+    --bs-offcanvas-zindex: 1045;
+    --bs-offcanvas-width: 400px;
+    --bs-offcanvas-height: 30vh;
+    --bs-offcanvas-padding-x: 1rem;
+    --bs-offcanvas-padding-y: 0.5rem;
+    --bs-offcanvas-color: ;
+    --bs-offcanvas-bg: #fff;
+    --bs-offcanvas-border-width: 1px;
+    --bs-offcanvas-border-color: var(--bs-border-color-translucent);
+    --bs-offcanvas-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.cardWT {
+    --bs-card-spacer-y: 0.5rem;
+    --bs-card-spacer-x: 0.3rem;
+}
+
+.imgCardWT {
+
+    height: 15vh;
+    border-radius: 100px;
+}
+
+.offCanvaBody{
+    display:inline-flex;
 }

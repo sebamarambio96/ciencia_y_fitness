@@ -7,9 +7,7 @@ $colorFuente: #444244;
 
 /* Import */
 
-@import "./mains";
-@import "./header";
-@import "./footer";
+@import "./offCanvas";
 @import "./section";
 
 
@@ -32,21 +30,31 @@ $colorFuente: #444244;
         background-color: #db6a29;
         color: white;
     }
+
+    &:focus {
+        background-color: #db6a29;
+        color: white;
+    }
+    &:active{
+        background-color: #db6a29;
+        color: white;
+    }
 }
 
 .form-check-input:checked {
     background-color: $colorTerciario;
     border-color: $colorTerciario;
-        &:active {
-            box-shadow: $colorTerciario;
-        }
+
+    &:active {
+        box-shadow: $colorTerciario;
+    }
 }
 
 .lndEstilo {
     color: $colorTerciario
 }
 
-i{
+i {
     color: $colorTerciario;
     font-size: 20px;
 }
