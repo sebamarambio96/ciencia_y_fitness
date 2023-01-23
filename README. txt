@@ -1,0 +1,24 @@
+
+Tegnologías utilizadas:
+
+- HTML / CSS 
+- JS
+- JSON
+- Fetch
+- Sass
+- Bootstrap
+- Adobe Illustrator
+
+- Sweet alert 2
+- Toastify
+
+Existen muchas fórmulas para calcular la TMB, pero una de las más utilizadas en todo el mundo es la fórmula de Harris Benedict descrita en 1919, revisada por Mifflin y St Jeor en 1990.
+El cálculo es el siguiente:
+Hombres TMB = (10 x peso de Kg) + (6,25 x altura en cm) – (5 x edad en años) + 5
+Mujeres TMB = (10 x peso en kg) + (6,25 x altura en cm) – (5 x edad en años) – 161
+Dependiendo del tipo de actividad que realices, la cantidad mínima de energía o el número de calorías que necesites variará según estos parámetros:
+Poco o ningún ejercicio = TMB x 1,2.
+Ejercicio ligero (1 - 3 días por semana) = TMB x 1,375.
+Ejercicio moderado (3 - 5 días por semana) = TMB x 1,55.
+Ejercicio fuerte (6 - 7 días por semana) = TMB x 1,725.
+Ejercicio muy fuerte (dos veces al día, entrenamientos muy duros) = TMB x 1,9.
